@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roundly — automatic round-up savings</title>
+  <meta name="description" content="Roundly helps you save effortlessly by rounding up purchases. Coming soon on iOS." />
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --card:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:
+        radial-gradient(900px 520px at 18% 10%, rgba(55, 120, 255,.35), transparent 55%),
+        radial-gradient(820px 520px at 82% 16%, rgba(0, 210, 170,.28), transparent 52%),
+        radial-gradient(900px 620px at 50% 100%, rgba(140, 120, 255,.18), transparent 60%),
+        var(--bg);
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:980px;margin:0 auto;padding:36px 18px 60px}
+    .top{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:10px 2px 18px
+    }
+    .back{color:var(--muted);font-size:14px}
+    .pill{
+      padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.06);
+      border:1px solid var(--border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      font-size:13px;color:var(--muted)
+    }
+    .hero{
+      padding:28px;border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      border:1px solid var(--border);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
+    }
+    h1{margin:0;font-size:42px;letter-spacing:-.04em;line-height:1.05}
+    p{margin:14px 0 0;color:var(--muted);font-size:16px;line-height:1.55;max-width:70ch}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+    @media (max-width:860px){.grid{grid-template-columns:1fr} h1{font-size:34px}}
+    .card{
+      padding:18px;border-radius:var(--radius);background:var(--card);border:1px solid var(--border);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      box-shadow:0 14px 45px rgba(0,0,0,.25);
+    }
+    h2{margin:0 0 10px;font-size:16px;letter-spacing:-.02em}
+    ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7}
+    .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;
+      border:1px solid var(--border);background:rgba(255,255,255,.08);
+      color:var(--text);font-weight:600;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(55,120,255,.45), rgba(0,210,170,.32));
+      border-color:rgba(255,255,255,.18);
+    }
+    .placeholder{
+      margin-top:14px;border-radius:18px;border:1px dashed rgba(255,255,255,.18);
+      padding:14px;color:var(--muted2);font-size:13px
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a class="back" href="/">← Back</a>
+      <span class="pill">Roundly • Coming soon</span>
+    </div>
+
+    <section class="hero">
+      <h1>Roundly</h1>
+      <p>Roundly helps you save effortlessly by rounding up purchases and moving the spare change into savings. Simple, transparent, and designed for iOS.</p>
+
+      <div class="cta">
+        <a class="btn primary" href="mailto:hi@terrin.dev?subject=Roundly%20TestFlight%20interest">Join the TestFlight list</a>
+        <a class="btn" href="mailto:hi@terrin.dev?subject=Roundly%20question">Ask a question</a>
+      </div>
+
+      <div class="placeholder">
+        Tip: Later we can add your App Store icon + screenshots here and turn this into a real product landing page.
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>What it does</h2>
+        <ul>
+          <li>Rounds up purchases to the next dollar</li>
+          <li>Tracks savings progress over time</li>
+          <li>Clear breakdown of round-ups and transfers</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Planned features</h2>
+        <ul>
+          <li>Custom round-up rules & goals</li>
+          <li>Spending insights + “safe-to-save” nudges</li>
+          <li>Optional bank linking & transfers (premium)</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
