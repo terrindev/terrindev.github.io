@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Roundly — automatic round-up savings</title>
   <meta name="description" content="Roundly helps you save effortlessly by rounding up purchases. Coming soon on iOS." />
+
   <style>
     :root{
       --bg:#0b0c10;
@@ -15,10 +16,16 @@
       --muted2:rgba(255,255,255,.55);
       --shadow:0 18px 60px rgba(0,0,0,.35);
       --radius:22px;
+
+      --green: rgba(0, 210, 170, .28);
+      --yellow: rgba(255, 205, 60, .22);
+      --red: rgba(255, 90, 120, .20);
     }
+
     *{box-sizing:border-box}
     body{
-      margin:0; color:var(--text);
+      margin:0;
+      color:var(--text);
       font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       background:
         radial-gradient(900px 520px at 18% 10%, rgba(55, 120, 255,.35), transparent 55%),
@@ -29,9 +36,10 @@
     }
     a{color:inherit;text-decoration:none}
     .wrap{max-width:980px;margin:0 auto;padding:36px 18px 60px}
+
     .top{
       display:flex;align-items:center;justify-content:space-between;gap:12px;
-      padding:10px 2px 18px
+      padding:10px 2px 18px;
     }
     .back{color:var(--muted);font-size:14px}
     .pill{
@@ -39,79 +47,257 @@
       border:1px solid var(--border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
       font-size:13px;color:var(--muted)
     }
+
     .hero{
       padding:28px;border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
-      border:1px solid var(--border);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border:1px solid var(--border);
+      backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
       box-shadow:var(--shadow);
     }
     h1{margin:0;font-size:42px;letter-spacing:-.04em;line-height:1.05}
-    p{margin:14px 0 0;color:var(--muted);font-size:16px;line-height:1.55;max-width:70ch}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
-    @media (max-width:860px){.grid{grid-template-columns:1fr} h1{font-size:34px}}
-    .card{
-      padding:18px;border-radius:var(--radius);background:var(--card);border:1px solid var(--border);
-      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-      box-shadow:0 14px 45px rgba(0,0,0,.25);
-    }
-    h2{margin:0 0 10px;font-size:16px;letter-spacing:-.02em}
-    ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7}
+    p{margin:14px 0 0;color:var(--muted);font-size:16px;line-height:1.55;max-width:72ch}
+
     .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
     .btn{
-      display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;
-      border:1px solid var(--border);background:rgba(255,255,255,.08);
-      color:var(--text);font-weight:600;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 14px;border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      font-weight:600;font-size:14px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
     }
     .btn.primary{
       background:linear-gradient(135deg, rgba(55,120,255,.45), rgba(0,210,170,.32));
       border-color:rgba(255,255,255,.18);
     }
-    .placeholder{
-      margin-top:14px;border-radius:18px;border:1px dashed rgba(255,255,255,.18);
-      padding:14px;color:var(--muted2);font-size:13px
+    .btn:hover{ transform: translateY(-1px); }
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+    @media (max-width:860px){
+      .grid{grid-template-columns:1fr}
+      h1{font-size:34px}
+    }
+    .card{
+      padding:18px;border-radius:var(--radius);
+      background:var(--card);
+      border:1px solid var(--border);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      box-shadow:0 14px 45px rgba(0,0,0,.25);
+    }
+    h2{margin:0 0 10px;font-size:16px;letter-spacing:-.02em}
+    .muted{color:var(--muted);font-size:14px;line-height:1.6}
+    ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7}
+
+    .sectionTitle{
+      margin-top: 18px;
+      font-size: 16px;
+      letter-spacing: -.02em;
+      color: var(--text);
+    }
+
+    /* Roadmap */
+    .roadmap{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .phase{
+      padding:18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 14px 45px rgba(0,0,0,.25);
+    }
+    .phaseHeader{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .phaseTitle{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+    .phaseTag{
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .phase.green{ background: linear-gradient(180deg, var(--green), rgba(255,255,255,.05)); }
+    .phase.yellow{ background: linear-gradient(180deg, var(--yellow), rgba(255,255,255,.05)); }
+    .phase.red{ background: linear-gradient(180deg, var(--red), rgba(255,255,255,.05)); }
+
+    .phaseCols{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width:860px){
+      .phaseCols{ grid-template-columns: 1fr; }
+    }
+
+    .goalBox{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      padding: 12px 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    footer{
+      margin-top: 18px;
+      color: var(--muted2);
+      font-size: 13px;
+      padding: 10px 6px 0;
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="top">
       <a class="back" href="/">← Back</a>
-      <span class="pill">Roundly • Coming soon</span>
+      <span class="pill">Roundly • Roadmap</span>
     </div>
 
     <section class="hero">
       <h1>Roundly</h1>
-      <p>Roundly helps you save effortlessly by rounding up purchases and moving the spare change into savings. Simple, transparent, and designed for iOS.</p>
+      <p>
+        Roundly helps you save effortlessly by rounding up purchases and building a savings habit.
+        Starting simple, then adding premium insight—automation only when it makes business sense.
+      </p>
 
       <div class="cta">
         <a class="btn primary" href="mailto:hi@terrin.dev?subject=Roundly%20TestFlight%20interest">Join the TestFlight list</a>
         <a class="btn" href="mailto:hi@terrin.dev?subject=Roundly%20question">Ask a question</a>
       </div>
-
-      <div class="placeholder">
-        Tip: Later we can add your App Store icon + screenshots here and turn this into a real product landing page.
-      </div>
     </section>
 
     <div class="grid">
       <section class="card">
-        <h2>What it does</h2>
+        <h2>What it does (MVP)</h2>
         <ul>
-          <li>Rounds up purchases to the next dollar</li>
-          <li>Tracks savings progress over time</li>
-          <li>Clear breakdown of round-ups and transfers</li>
+          <li>Round up purchases to the next dollar (or custom rule)</li>
+          <li>Track savings progress and streaks</li>
+          <li>Clear history of round-ups and totals</li>
+          <li>Manual transfers (at first) to keep costs low</li>
         </ul>
       </section>
 
       <section class="card">
-        <h2>Planned features</h2>
-        <ul>
-          <li>Custom round-up rules & goals</li>
-          <li>Spending insights + “safe-to-save” nudges</li>
-          <li>Optional bank linking & transfers (premium)</li>
-        </ul>
+        <h2>Why phases?</h2>
+        <p class="muted">
+          Auto-transfers can add real costs. The roadmap keeps Roundly affordable while proving the core habit works first,
+          then monetizing clarity + discipline, then adding automation as an optional add-on.
+        </p>
       </section>
     </div>
+
+    <h2 class="sectionTitle">Product roadmap</h2>
+
+    <div class="roadmap">
+      <!-- Phase 1 -->
+      <section class="phase green">
+        <div class="phaseHeader">
+          <h3 class="phaseTitle">🟢 Phase 1 — Personal + free beta</h3>
+          <span class="phaseTag">Goal: prove the habit</span>
+        </div>
+
+        <div class="phaseCols">
+          <div class="goalBox">
+            <strong>Who it’s for</strong><br/>
+            • You<br/>
+            • Friends<br/>
+            • Early testers<br/>
+          </div>
+          <div class="goalBox">
+            <strong>What’s included</strong><br/>
+            • Real Plaid data (testing/limited)<br/>
+            • Manual transfers<br/>
+            • No subscription yet<br/>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top:12px;">
+          This phase validates that Roundly actually helps people save—before adding costs or subscriptions.
+        </p>
+      </section>
+
+      <!-- Phase 2 -->
+      <section class="phase yellow">
+        <div class="phaseHeader">
+          <h3 class="phaseTitle">🟡 Phase 2 — “Assistive Premium” ($2–$4/month)</h3>
+          <span class="phaseTag">Pay for clarity</span>
+        </div>
+
+        <div class="phaseCols">
+          <div class="goalBox">
+            <strong>Users pay for</strong><br/>
+            • Unlimited bank connections<br/>
+            • Advanced insights<br/>
+            • Smart goals<br/>
+            • Notifications<br/>
+            • Streaks & history<br/>
+            • Exporting data<br/>
+            • Peace of mind<br/>
+          </div>
+          <div class="goalBox">
+            <strong>What they’re NOT paying for</strong><br/>
+            Not paying for “manual transfers.”<br/><br/>
+            They’re paying for financial clarity + discipline.
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 3 -->
+      <section class="phase red">
+        <div class="phaseHeader">
+          <h3 class="phaseTitle">🔥 Phase 3 — Automation add-on (optional)</h3>
+          <span class="phaseTag">Offsets ACH costs</span>
+        </div>
+
+        <div class="phaseCols">
+          <div class="goalBox">
+            <strong>If/when auto-transfers arrive</strong><br/>
+            • +$1–$2/month add-on<br/>
+            <em>or</em> per-transfer fee<br/>
+            <em>or</em> “Pro” tier<br/>
+          </div>
+          <div class="goalBox">
+            <strong>Why this matters</strong><br/>
+            Auto-transfers can create ongoing costs.<br/><br/>
+            This keeps margins sane while still offering automation for people who want it.
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top:12px;">
+          Automation stays optional so Roundly can remain affordable—and still sustainable for you to run.
+        </p>
+      </section>
+    </div>
+
+    <footer>
+      © <span id="y"></span> Terrin Martin • <a href="mailto:hi@terrin.dev">hi@terrin.dev</a>
+    </footer>
   </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
