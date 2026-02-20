@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "P2MMZSN4B2.dev.terrin.Roundly",
+        "paths": [
+          "/plaid-oauth",
+          "/plaid-oauth/*"
+        ]
+      }
+    ]
+  }
+}
