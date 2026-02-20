@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Return to Roundly</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; padding: 28px; line-height: 1.35; }
+    .card { max-width: 520px; margin: 0 auto; padding: 18px 18px 22px; border: 1px solid #e6e6e6; border-radius: 16px; }
+    button { width: 100%; padding: 14px 16px; border-radius: 14px; border: none; font-size: 16px; font-weight: 600; }
+    .primary { background: #111; color: #fff; }
+    .muted { color: #666; font-size: 13px; margin-top: 10px; }
+    code { background: #f6f6f6; padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Finishing in Roundly…</h2>
+    <p>If Roundly doesn’t reopen automatically, tap the button below.</p>
+
+    <button class="primary" id="openBtn">Open Roundly</button>
+
+    <p class="muted">
+      Debug: If you’re stuck here, your Universal Link isn’t configured yet.
+      The button will still try to open the app via a fallback deep link.
+    </p>
+  </div>
+
+  <script>
+    // Fallback deep link (works if you add this URL scheme in Xcode)
+    // We pass the full current URL so the app can parse it if needed.
+    const fallback = "roundly://plaid-oauth?redirect=" + encodeURIComponent(location.href);
+
+    // Try auto-open shortly after load (some iOS versions may block without a tap).
+    setTimeout(() => { window.location.href = fallback; }, 250);
+
+    document.getElementById("openBtn").addEventListener("click", () => {
+      window.location.href = fallback;
+    });
+  </script>
+</body>
+</html>
